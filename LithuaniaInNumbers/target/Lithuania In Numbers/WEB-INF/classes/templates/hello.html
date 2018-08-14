@@ -1,0 +1,31 @@
+<!DOCTYPE HTML>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Getting Started: Serving Web Content</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+	<script>
+		console.log("working");
+		$(document).ready(function(){
+			$.ajax({
+				//type: "GET",
+				dataType: "json",
+				url: "/abc",
+				data: {},
+				success: function(result){
+					console.log("Success!");
+					$("#text").html(result.name);
+				},
+				error: function(e) {
+					console.log("error:");
+					console.log(e);
+				}
+			});
+		});
+	</script>
+</head>
+<body>
+    <p th:text="'Hello ' + ${name} + '!'" />
+	<p id="text"></p>
+</body>
+</html>
