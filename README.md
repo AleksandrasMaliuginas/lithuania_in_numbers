@@ -23,3 +23,24 @@ What do you need to start developing?
 
 	♦	Python 3.7
 		Make sure Python binary location is added to path.
+
+
+Setting up your environment
+
+	Windows:
+		
+		execute setup.py with Administrator privileges
+		restart your computer
+		run PostgreSQL server:
+			open PowerShell or CMD and type
+			
+			pg_ctl -D "C:\[your\postgresql\installation\dir]\data" start
+			
+		run migrate.py to import data to the postgreSQL database
+		
+	Linux:
+
+		run
+			sudo python setup.py
+		run
+			python3 migrate.py
