@@ -3,6 +3,29 @@
     xmlns:th="http://www.thymeleaf.org" 
     xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity3"
     xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout">
+    
+<head>
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+	
+	<script>
+		$.ajax({
+			url: "/people/population",
+			dataType: "json",
+			method: "POST",
+			data: {
+				name: "ASDF"
+			},
+			success: function(result){
+				console.log("Done");
+		        console.log(result);
+		    },
+		    error: function(e) {
+		    	console.log(e);
+		    }
+	    });
+	</script>
+</head>
+    
 <body>
 <h2>Hello World! Success!</h2>
 </body>
