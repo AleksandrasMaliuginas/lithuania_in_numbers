@@ -1,0 +1,28 @@
+#lithuaniaMap {
+  height: 600px;
+}
+
+#County_Areas > path:hover, #Mun_Areas > *:hover {
+  fill: var(--gray);
+}
+
+.mapTooltip {
+  display: none;
+  opacity: 0;
+}
+
+.mapTooltip.visible {
+  display: block;
+  position: absolute;
+  background: var(--white);
+  -webkit-border-radius: 5px;
+  -moz-border-radius: 5px;
+  border-radius: 5px;
+  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+  opacity: 1;
+  z-index: 10;
+}
+
+.mapTooltip .content {
+  padding: 5px 10px;
+}
