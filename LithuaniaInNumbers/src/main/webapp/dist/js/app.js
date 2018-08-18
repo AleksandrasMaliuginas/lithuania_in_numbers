@@ -3,16 +3,7 @@
 $(document).ready(function() {
   loadMap();
   mapEventListener();
-  // console.log($("#lithuaniaMap #County_Areas path#3022"))
-  // $("#lithuaniaMap").on("mouseover", "#County_Areas > path", function() {
-  //   console.log("KKK");
-  //   $(document).mousemove( function(e) {
-  //      // // mouse coordinates
-  //      // mouseX = e.pageX;
-  //      // mouseY = e.pageY;
-  //     console.log(e.pageX + "; " + e.pageY);
-  //   });
-  // });
+  
 });
 
 // =============================================================================

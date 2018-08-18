@@ -458,3 +458,7 @@
 2018-08-17 16:31:54,255 [Worker-8: Building workspace] INFO  o.e.m.c.i.embedder.EclipseLogger - skip non existing resourceDirectory /home/aleksandras/GitHub/lithuania_in_numbers/LithuaniaInNumbers/src/main/resources
 2018-08-17 16:31:54,257 [Worker-8: Building workspace] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered resources.
 2018-08-17 16:31:54,257 [Worker-8: Building workspace] INFO  o.e.m.c.i.embedder.EclipseLogger - skip non existing resourceDirectory /home/aleksandras/GitHub/lithuania_in_numbers/LithuaniaInNumbers/src/test/resources
+2018-08-18 11:53:30,815 [Worker-81: Building workspace] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered resources.
+2018-08-18 11:53:30,815 [Worker-81: Building workspace] INFO  o.e.m.c.i.embedder.EclipseLogger - skip non existing resourceDirectory /home/aleksandras/GitHub/lithuania_in_numbers/LithuaniaInNumbers/src/main/resources
+2018-08-18 11:53:30,816 [Worker-81: Building workspace] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered resources.
+2018-08-18 11:53:30,817 [Worker-81: Building workspace] INFO  o.e.m.c.i.embedder.EclipseLogger - skip non existing resourceDirectory /home/aleksandras/GitHub/lithuania_in_numbers/LithuaniaInNumbers/src/test/resources
