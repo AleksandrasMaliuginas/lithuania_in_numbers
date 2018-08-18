@@ -1,0 +1,23 @@
+:root {
+  --white: #fafafa;
+  --gray: #f2f2f2;
+  --green: #009900;
+}
+
+
+body {
+  background: var(--white);
+  font-family: 'Lato';
+  cursor: default;
+}
+
+h1, h2, h3, h4, h5, h6 {
+  font-family: 'Catamaran';
+  font-weight: 800;
+}
+
+@media (min-width: 1200px) {
+  .container {
+      max-width: 1400px;
+  }
+}
