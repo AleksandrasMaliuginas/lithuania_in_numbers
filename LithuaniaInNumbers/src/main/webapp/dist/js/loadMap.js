@@ -7,7 +7,6 @@ function loadMap() {
 
   $.ajax({
     url: TERRITORIES_URL,
-    // method: 'POST',
 		dataType: "json",
 		data: {},
 		success: function (data) {

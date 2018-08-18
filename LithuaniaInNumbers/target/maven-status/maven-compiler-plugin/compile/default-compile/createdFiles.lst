@@ -1,2 +1,8 @@
+org/LithuaniaInNumbers/Controllers/HomeController.class
 org/LithuaniaInNumbers/Controllers/PeopleController.class
+org/LithuaniaInNumbers/Models/Territory.class
+org/LithuaniaInNumbers/Models/People/Population.class
+org/LithuaniaInNumbers/Database.class
+org/LithuaniaInNumbers/Repositories/PeopleRepository.class
 org/LithuaniaInNumbers/Program.class
+org/LithuaniaInNumbers/Repositories/MainRepository.class

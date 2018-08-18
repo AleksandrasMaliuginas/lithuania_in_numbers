@@ -3,7 +3,8 @@
 $(document).ready(function() {
   loadMap();
   mapEventListener();
-  
+
+  getPopulation();
 });
 
 // =============================================================================

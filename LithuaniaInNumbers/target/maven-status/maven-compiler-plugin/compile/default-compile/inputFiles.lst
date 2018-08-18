@@ -1,2 +1,8 @@
-/home/aleksandras/Workspace/Java/LithuaniaInNumbers/src/main/java/org/LithuaniaInNumbers/Program.java
-/home/aleksandras/Workspace/Java/LithuaniaInNumbers/src/main/java/org/LithuaniaInNumbers/Controllers/PeopleController.java
+/home/aleksandras/GitHub/lithuania_in_numbers/LithuaniaInNumbers/src/main/java/org/LithuaniaInNumbers/Repositories/MainRepository.java
+/home/aleksandras/GitHub/lithuania_in_numbers/LithuaniaInNumbers/src/main/java/org/LithuaniaInNumbers/Controllers/PeopleController.java
+/home/aleksandras/GitHub/lithuania_in_numbers/LithuaniaInNumbers/src/main/java/org/LithuaniaInNumbers/Controllers/HomeController.java
+/home/aleksandras/GitHub/lithuania_in_numbers/LithuaniaInNumbers/src/main/java/org/LithuaniaInNumbers/Models/People/Population.java
+/home/aleksandras/GitHub/lithuania_in_numbers/LithuaniaInNumbers/src/main/java/org/LithuaniaInNumbers/Database.java
+/home/aleksandras/GitHub/lithuania_in_numbers/LithuaniaInNumbers/src/main/java/org/LithuaniaInNumbers/Program.java
+/home/aleksandras/GitHub/lithuania_in_numbers/LithuaniaInNumbers/src/main/java/org/LithuaniaInNumbers/Repositories/PeopleRepository.java
+/home/aleksandras/GitHub/lithuania_in_numbers/LithuaniaInNumbers/src/main/java/org/LithuaniaInNumbers/Models/Territory.java
