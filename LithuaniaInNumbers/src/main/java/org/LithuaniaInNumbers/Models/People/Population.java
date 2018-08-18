@@ -1,4 +1,4 @@
-package org.LithuaniaInNumbers.DataModels.People;
+package org.LithuaniaInNumbers.Models.People;
 
 public class Population {
 	public int total = 54;

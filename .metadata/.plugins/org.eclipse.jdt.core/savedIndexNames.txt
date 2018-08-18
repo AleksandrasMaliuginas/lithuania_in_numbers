@@ -23,6 +23,7 @@ INDEX VERSION 1.131+/home/aleksandras/GitHub/lithuania_in_numbers/.metadata/.plu
 957422600.index
 2203313607.index
 2954666118.index
+1992099886.index
 2708627161.index
 3075746733.index
 1120613144.index

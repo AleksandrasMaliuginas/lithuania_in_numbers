@@ -1,7 +1,20 @@
 "use strict";
 
+var TERRITORIES_URL = "/territories";
+
 function loadMap() {
   $("#lithuaniaMap").load("lithuaniaMap.svg");
+
+  $.ajax({
+    url: TERRITORIES_URL,
+    // method: 'POST',
+		dataType: "json",
+		data: {},
+		success: function (data) {
+      console.log("Done");
+			console.log(data);
+		}
+	});
 }
 
 function mapEventListener() {
