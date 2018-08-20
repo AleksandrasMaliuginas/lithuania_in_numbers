@@ -19,8 +19,10 @@
     <link href="dist/css/navigation.css" rel="stylesheet">
     <link href="dist/css/page.css" rel="stylesheet">
     <link href="dist/css/map.css" rel="stylesheet">
+    <link href="dist/css/charts.css" rel="stylesheet">
 
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+    <script src="https://www.gstatic.com/charts/loader.js" type="text/javascript" ></script>
     <script src="dist/js/app.js"></script>
     <script src="dist/js/loadMap.js"></script>
     <script src="dist/js/getPeople.js"></script>
@@ -40,17 +42,30 @@
       </div>
     </header>
 
-    <section class="container">
-      <div class="row align-items-center">
-        <div class="col-lg-6 order-lg-2">
-          <div class="p-5">
-            <!-- <img class="img-fluid rounded-circle" src="img/01.jpg" alt=""> -->
+    <section>
+      <div id="population" class="container">
+        <div class="row align-items-center">
+          <div class="col-md-8 order-md-1">
+            <div class="py-5">
+              <h3 class="year"></h3>
+              <div id="populationChart" class="chart"></div>
+            </div>
           </div>
-        </div>
-        <div class="col-lg-6 order-lg-1">
-          <div class="p-5">
-            <h2 class="display-4">For those about to rock...</h2>
-            <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Quod aliquid, mollitia odio veniam sit iste esse assumenda amet aperiam exercitationem, ea animi blanditiis recusandae! Ratione voluptatum molestiae adipisci, beatae obcaecati.</p>
+          <div class="col-md-4 order-md-2">
+            <div class="py-5">
+              <div class="card-custom p-2">
+                <h5 class="header">Total population</h5>
+                <h3 class="content"></h3>
+              </div>
+              <div class="card-custom p-2">
+                <h5 class="header">Men</h5>
+                <h3 class="content"></h3>
+              </div>
+              <div class="card-custom p-2">
+                <h5 class="header">Women</h5>
+                <h3 class="content"></h3>
+              </div>
+            </div>
           </div>
         </div>
       </div>

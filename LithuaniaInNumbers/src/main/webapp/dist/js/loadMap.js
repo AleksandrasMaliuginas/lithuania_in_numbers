@@ -3,17 +3,22 @@
 var TERRITORIES_URL = "/territories";
 
 function loadMap() {
-  $("#lithuaniaMap").load("lithuaniaMap.svg");
+  $("#lithuaniaMap").load("lithuaniaMap.svg", getTerritories);
+}
 
+function getTerritories() {
   $.ajax({
     url: TERRITORIES_URL,
-		dataType: "json",
-		data: {},
-		success: function (data) {
-      console.log("Done");
-			console.log(data);
-		}
-	});
+    dataType: "json",
+    data: {},
+    success: function(data) {
+      $.grep(data, function(row) {
+        $("#County_Areas > path[name='" + row.title + "'], #Mun_Areas > *[name='" + row.title + "']")
+          .attr("id", row.id)
+          .attr("countyId", row.countyId);
+      });
+    }
+  });
 }
 
 function mapEventListener() {
@@ -36,5 +41,16 @@ function mapEventListener() {
   $("#lithuaniaMap").on("click", "#County_Areas > path", function() {
     $("#lithuaniaMap #County_Areas > path").show();
     $(this).hide();
+    filters.municipality = $(this).attr("id");
+
+    updateData();
+  });
+
+  $("#lithuaniaMap").on("click", "#Mun_Areas > *", function() {
+    $("#lithuaniaMap #Mun_Areas > *").css("fill", "#FDFCEA");
+    $(this).css("fill", "var(--green)");
+    filters.municipality = $(this).attr("id");
+
+    updateData();
   });
 }
