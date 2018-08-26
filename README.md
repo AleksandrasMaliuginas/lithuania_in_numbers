@@ -1,7 +1,8 @@
 # lithuania_in_numbers
 
 Software for displaying Lithuanian statistics.
-
+Data are taken from Lithuania Official Statistics Portal.
+https://osp.stat.gov.lt/
 
 What do you need to start developing?
 
