@@ -8,17 +8,17 @@ import org.springframework.web.bind.annotation.RequestParam;
 import java.sql.SQLException;
 import java.util.List;
 
-import org.LithuaniaInNumbers.Models.People.Population;
-import org.LithuaniaInNumbers.Repositories.PeopleRepository;
+import org.LithuaniaInNumbers.Models.People.population.TotalPopulation;
+import org.LithuaniaInNumbers.Repositories.PopulationRepository;
 
 @RestController
 @RequestMapping(value = "/people")
 public class PeopleController {
 	
 	@RequestMapping(value = "/population", method = RequestMethod.GET)
-	public List<Population> population(@RequestParam(name="territoryId", required=false, defaultValue="1") int municipalityID) {
+	public List<TotalPopulation> population(@RequestParam(name="territoryId", required=false, defaultValue="1") int municipalityID) {
 		try {
-			return new PeopleRepository().getTotalPop(municipalityID);
+			return new PopulationRepository().getTotalPop(municipalityID);
 		} catch (SQLException e) {
 			System.err.println("Error in PeopleControllers!");
 		}
