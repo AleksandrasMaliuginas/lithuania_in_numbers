@@ -1,0 +1,32 @@
+header {
+  display: block;
+  position: relative;
+}
+
+header::before {
+  content: "";
+  background-image: url("http://www.worldoflocations.com/wp-content/uploads/2017/02/Lithuania_22.jpg");
+  position: absolute;
+  opacity: 0.5;
+  top: 0;
+  left: 0;
+  bottom: 0;
+  right: 0;
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
+  z-index: -2;
+}
+
+/* Colorful opacity */
+/* header::after {
+  content: "";
+  background: var(--green);
+  position: absolute;
+  opacity: 0.5;
+  top: 0;
+  left: 0;
+  bottom: 0;
+  right: 0;
+  z-index: -2;
+} */

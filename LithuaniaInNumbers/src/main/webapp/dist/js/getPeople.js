@@ -1,6 +1,7 @@
 "use strict";
 
-var POPULATION_URL = "/people/population";
+var POPULATION_URL = "/people/population",
+    MEDIAN_AGE_URL = "/people/medianAge";
 
 function getPopulation() {
   $.ajax({
@@ -10,15 +11,12 @@ function getPopulation() {
       territoryId: filters.municipality
     },
 		success: function (data) {
-      console.log(data);
-      drawPopulation(data);
+      // console.log(data);
 
       var dataArray = [ ['Year', 'Total', 'Men', 'Women'] ];
       Array.from(data, row => dataArray.push( [ new Date(row.year, 0, 1), row.total, row.men, row.women] ) );
 
       google.charts.load('current', { 'packages':['corechart', 'motionchart'], callback: drawChart });
-      // google.charts.setOnLoadCallback(drawChart);
-
       function drawChart() {
         var googleData = google.visualization.arrayToDataTable(dataArray);
         googleData.sort([{column: 0}]);
@@ -32,11 +30,10 @@ function getPopulation() {
             easing: 'inAndOut',
           },
           backgroundColor: 'transparent',
-          // chartArea: {  width: "80%" },
           focusTarget: 'category',
-          legend: { position: 'none' },
+          legend: { position: 'bottom' },
           tooltip: {
-            
+            trigger: 'none'
           },
           hAxis: {
             gridlines: {
@@ -68,15 +65,10 @@ function getPopulation() {
         $("#population .card-custom:nth-child(3) .content").text(toStr(data[data.length - 1].women));
 
 
-        var view = new google.visualization.DataView(googleData);
-        view.hideColumns([2, 3]);
-        chart.draw(view, options);
+        // var view = new google.visualization.DataView(googleData);
+        // view.hideColumns([2, 3]);
+        // chart.draw(view, options);
       }
-
 		}
 	});
-}
-
-function drawPopulation(data) {
-
 }

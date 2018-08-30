@@ -1,5 +1,9 @@
+header {
+  color: var(--black);
+}
+
 #lithuaniaMap {
-  height: 600px;
+  opacity: .8;
 }
 
 #County_Areas > path:hover, #Mun_Areas > *:hover {
