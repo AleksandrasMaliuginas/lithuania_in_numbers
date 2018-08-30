@@ -1,10 +1,8 @@
 package org.LithuaniaInNumbers;
 
-import java.sql.SQLException;
-
-import org.LithuaniaInNumbers.Repositories.PopulationRepository;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
+import org.LithuaniaInNumbers.Database;
 
 @SpringBootApplication
 public class Program {
@@ -13,16 +11,5 @@ public class Program {
         SpringApplication.run(Program.class, args);
         
         new Database().connect();
-        try {
-        	new PopulationRepository().getAveragePopYear(11);
-        } catch(SQLException e) {
-        	
-        }
-      /*  try {
-			new PopulationRepository().getTotalPop(11);
-		} catch (SQLException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}*/
     }
 }
