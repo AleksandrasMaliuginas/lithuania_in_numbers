@@ -19,7 +19,7 @@ public class MainRepository {
 		
 		try {
 			ResultSet query;
-			query = db.prepareStatement("SELECT * FROM general.\"Municipalities\";").executeQuery();
+			query = db.prepareStatement("SELECT * FROM general.\"Territories\";").executeQuery();
 			
 			while(query.next()) {
 				territories.add(
