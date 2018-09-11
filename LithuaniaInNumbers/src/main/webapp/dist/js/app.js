@@ -4,18 +4,36 @@ $(document).ready(function() {
   loadMap();
   mapEventListener();
 
-  getPopulation();
+  updateData();
+
 });
 
-// =============================================================================
+function updateData() {
+  console.log("Upadete data");
+  getPopulation();
+}
+
+function toStr(number) {
+  var string = String(number),
+      index = 0;
+  for(var i = string.length; i >= 0; i--) {
+    if(index % 3 === 0) {
+      string = [string.slice(0, i), " ", string.slice(i)].join('');
+    }
+    index++;
+  }
+
+  return string;
+}
+
+
 var filters = {
-    municipality: null,
-    date1: "2017-01-01",
-    date2: "2009-01-01",
-    ageFrom: 12,
-    ageTo: 45,
-    gender: 0
+  municipality: 1, // 1 is Lithuania
+  // ageFrom: 12,
+  // ageTo: 45
 };
+
+// =============================================================================
 
 var genderData1 = {
     total: 0,
@@ -29,7 +47,7 @@ var genderData2 = {
     women: 0
 };
 
-function updateData() {
+function updateData1() {
 
 	// http://lithuanianumbersapp.azurewebsites.net/ people/totals?&municipality=1
     let TOTALS_URL = "/people/totals";
@@ -56,7 +74,7 @@ function updateData() {
 	Old one
  */
 
-function updateData1(onlyPercentage = false) {
+function updateData2(onlyPercentage = false) {
 
     // http://lithuanianumbersapp.azurewebsites.net/people/ages?date=2014-01-01&municipality=1
     var AGES_URL = "/people/ages";

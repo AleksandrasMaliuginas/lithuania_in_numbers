@@ -1,20 +1,18 @@
 "use strict";
 
-var POPULATION_URL = "/people/population";
+var POPULATION_URL = "/people/population",
+    MEDIAN_AGE_URL = "/people/medianAge";
 
 function getPopulation() {
   $.ajax({
     url: POPULATION_URL,
 		dataType: "json",
 		data: {
-      territoryId: 1
+      territoryId: filters.municipality
     },
-		success: function (data) {
-<<<<<<< Updated upstream
-      console.log("Done people");
+    success: function (data) {
+      // console.log("Done people");
 			console.log(data);
-=======
-      console.log(data);
 
       var dataArray = [ ['Year', 'Total', 'Men', 'Women'] ];
       Array.from(data, row => dataArray.push( [ new Date(row.year, 0, 1), row.total, row.men, row.women] ) );
@@ -72,7 +70,6 @@ function getPopulation() {
         // view.hideColumns([2, 3]);
         // chart.draw(view, options);
       }
->>>>>>> Stashed changes
 		}
 	});
 }
