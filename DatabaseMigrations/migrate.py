@@ -1,7 +1,7 @@
 import sys, os, re, pathlib2, psycopg2, platform
 
 # Delimiter / for unix OS, \ for windows OS
-dl = '\\' if platform.system() == 'Windows' else '/'
+dl = '/' if platform.system() == 'Linux' else '\\'
 
 # Path to SQL files <string>
 dir = os.path.dirname(os.path.abspath(__file__)) + dl
@@ -12,7 +12,7 @@ EXIST_SELECT = ("SELECT 1\n" +
 				"AND table_schema = 'public'")
 # ==============================================================================
 def executeCommand(path, fname, isImport):
-	command = "psql -d postgres -U postgres -h 127.0.0.1 -f " + path
+	command = "psql -d postgres -U postgres -f " + path
 
 	if isImport != -1:
 		print("Import")
@@ -44,7 +44,7 @@ def getLastMigration(schema):
 	cur.execute(LAST_MIG_SELECT)
 	names = cur.fetchone()
 	if names is not None:
-		lastMig = int(names[0][9:11])
+		lastMig = int(names[0][0:11])
 	else:
 		lastMig = 0
 
@@ -67,7 +67,8 @@ def importAll(files, schema = 'general'):
 		regexGroup = re.fullmatch("(\d{8}_\d{2}_.+).sql", fname)
 
 		if regexGroup:
-			if int(fname[9:11]) > lastMigration :
+			print(str(int(fname[0:11])) + " > " + str(lastMigration))
+			if int(fname[0:11]) > lastMigration :
 				print("Execute " + fname)
 				executeCommand(path, fname, fname.find("import"))
 			else:
