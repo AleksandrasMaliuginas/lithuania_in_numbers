@@ -26,7 +26,11 @@ public class PeopleRepository {
 				"ON p.age_period_id = ap.id\n" + 
 				"INNER JOIN general.\"Years\" AS y\n" + 
 				"ON ap.year_id = y.id\n" + 
+<<<<<<< Updated upstream
 				"WHERE p.territory_id = 1 AND ap.age = -1;"
+=======
+				"WHERE p.territory_id = " + territoryId + " AND ap.age = -1;"
+>>>>>>> Stashed changes
 			).executeQuery();
 			
 			while(query.next()) {
