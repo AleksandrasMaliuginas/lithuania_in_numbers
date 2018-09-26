@@ -18,8 +18,6 @@ public class Database {
 		} catch (SQLException e) {
 			e.printStackTrace();
 		}
-		  
-		System.out.println("Connection to database successful");
 	}
 	
 	public void test() throws SQLException {

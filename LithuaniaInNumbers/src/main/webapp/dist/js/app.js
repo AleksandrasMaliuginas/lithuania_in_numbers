@@ -11,6 +11,7 @@ $(document).ready(function() {
 function updateData() {
   console.log("Upadete data");
   getPopulation();
+  getAverageAge();
 }
 
 function toStr(number) {

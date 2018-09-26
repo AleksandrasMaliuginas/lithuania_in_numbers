@@ -7,6 +7,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import java.util.List;
 
 import org.LithuaniaInNumbers.Models.People.Population;
+import org.LithuaniaInNumbers.Models.People.AverageAge;
 import org.LithuaniaInNumbers.Repositories.PeopleRepository;
 
 @RestController
@@ -17,5 +18,11 @@ public class PeopleController {
 	public List<Population> population(@RequestParam(name="territoryId", required=false, defaultValue="1") int territoryId) {
 		
 		return new PeopleRepository().getPopulation(territoryId);
+	}
+	
+	@RequestMapping(value = "/averageAge", method = RequestMethod.GET)
+	public List<AverageAge> averageAge(@RequestParam(name="territoryId", required=false, defaultValue="1") int territoryId) {
+		
+		return new PeopleRepository().getAverageAge(territoryId);
 	}
 }
