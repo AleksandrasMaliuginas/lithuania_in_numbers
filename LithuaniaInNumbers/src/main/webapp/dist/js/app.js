@@ -12,6 +12,7 @@ function updateData() {
   console.log("Upadete data");
   getPopulation();
   getAverageAge();
+  getDensity();
 }
 
 function toStr(number) {

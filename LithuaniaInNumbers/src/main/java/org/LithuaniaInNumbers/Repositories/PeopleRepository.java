@@ -9,6 +9,7 @@ import java.util.List;
 import org.LithuaniaInNumbers.Database;
 import org.LithuaniaInNumbers.Models.People.Population;
 import org.LithuaniaInNumbers.Models.People.AverageAge;
+import org.LithuaniaInNumbers.Models.People.Density;
 
 public class PeopleRepository {
 	
@@ -71,15 +72,12 @@ public class PeopleRepository {
 			for(int i = 0; i < population.size() && query.next(); i++) {
 				averageAge.add(
 					new AverageAge(
-						(float) query.getInt(1) / population.get(i).total,
-						(float) query.getInt(2) / population.get(i).men,
-						(float) query.getInt(3) / population.get(i).women,
-						(float) query.getInt(4)
+						query.getFloat(1) / population.get(i).total,
+						query.getFloat(2) / population.get(i).men,
+						query.getFloat(3) / population.get(i).women,
+						query.getInt(4)
 					)
 				);
-				System.out.println(population.get(i).total);
-				System.out.println(query.getInt(1));
-				System.out.println(query.getInt(1) / population.get(i).total);
 			}
 		} catch (SQLException e) {
 			e.printStackTrace();
@@ -87,5 +85,38 @@ public class PeopleRepository {
 		
 		
 		return averageAge;
+	}
+	
+public List<Density> getDensity(int territoryId) {
+		
+		List<Density> density = new ArrayList<>();
+		
+		try {
+			ResultSet query;
+			query = db.prepareStatement(
+				"SELECT d.total, y.year\n" + 
+				"FROM people.\"Density\" AS d, general.\"Years\" AS y\n" + 
+				"WHERE\n" + 
+				"d.year_id = y.id AND\n" + 
+				"d.territory_id = " + territoryId + " AND\n" + 
+				"d.total IS NOT NULL\n" + 
+				"ORDER BY y.year;"
+			).executeQuery();
+			
+			while(query.next()) {
+				density.add(
+					new Density(
+						query.getFloat(1),
+						query.getInt(2)
+					)
+				);
+				// System.out.println(query.getFloat(1));
+			}
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+		
+		
+		return density;
 	}
 }
