@@ -7,70 +7,23 @@ var POPULATION_URL = "/people/population",
 function getPopulation() {
   $.ajax({
     url: POPULATION_URL,
-		dataType: "json",
+		dataType: 'json',
 		data: {
       territoryId: filters.municipality
     },
-    success: function (data) {
-      // console.log("Done people");
-			console.log(data);
-
+    success: function(data) {
+			// console.log(data);
       var dataArray = [ ['Year', 'Total', 'Men', 'Women'] ];
       Array.from(data, row => dataArray.push( [ new Date(row.year, 0, 1), row.total, row.men, row.women] ) );
 
-      google.charts.load('current', { 'packages':['corechart', 'motionchart'], callback: drawChart });
-      function drawChart() {
-        var googleData = google.visualization.arrayToDataTable(dataArray);
-        googleData.sort([{column: 0}]);
-
-        var options = {
-          title: 'Population',
-          legend: { position: 'bottom' },
-          animation: {
-            startup: true,
-            duration: 1000,
-            easing: 'inAndOut',
-          },
-          backgroundColor: 'transparent',
-          focusTarget: 'category',
-          legend: { position: 'bottom' },
-          tooltip: {
-            trigger: 'none'
-          },
-          hAxis: {
-            gridlines: {
-              color: 'transparent',
-              count: -1
-            }
-          },
-          vAxis: {
-            format: 'short',
-            minValue: 0
-          }
-        };
-
-        var chart = new google.visualization.LineChart(document.getElementById('populationChart'));
-
-        google.visualization.events.addListener(chart, 'onmouseover', selectHandler);
-        function selectHandler(a) {
-          $("#population .year").text(data[a.row].year);
-          $("#population .card-custom:nth-child(1) .content").text(toStr(data[a.row].total));
-          $("#population .card-custom:nth-child(2) .content").text(toStr(data[a.row].men));
-          $("#population .card-custom:nth-child(3) .content").text(toStr(data[a.row].women));
+      lineChart(data, {
+        title: 'Population',
+        section: '#population',
+        googleChartData: dataArray,
+        beautify: function(val) {
+          return splitInt(val);
         }
-
-        chart.draw(googleData, options);
-
-        $("#population .year").text(data[data.length - 1].year);
-        $("#population .card-custom:nth-child(1) .content").text(toStr(data[data.length - 1].total));
-        $("#population .card-custom:nth-child(2) .content").text(toStr(data[data.length - 1].men));
-        $("#population .card-custom:nth-child(3) .content").text(toStr(data[data.length - 1].women));
-
-
-        // var view = new google.visualization.DataView(googleData);
-        // view.hideColumns([2, 3]);
-        // chart.draw(view, options);
-      }
+      });
 		}
 	});
 }
@@ -78,65 +31,23 @@ function getPopulation() {
 function getAverageAge() {
   $.ajax({
     url: AVERAGE_AGE_URL,
-		dataType: "json",
+		dataType: 'json',
 		data: {
       territoryId: filters.municipality
     },
     success: function (data) {
-      // console.log("Done people");
-			console.log(data);
-
+      // console.log(data);
       var dataArray = [ ['Year', 'Total', 'Men', 'Women'] ];
       Array.from(data, row => dataArray.push( [ new Date(row.year, 0, 1), row.total, row.men, row.women] ) );
 
-      google.charts.load('current', { 'packages':['corechart', 'motionchart'], callback: drawChart });
-      function drawChart() {
-        var googleData = google.visualization.arrayToDataTable(dataArray);
-        googleData.sort([{column: 0}]);
-
-        var options = {
-          title: 'Average age',
-          legend: { position: 'bottom' },
-          animation: {
-            startup: true,
-            duration: 1000,
-            easing: 'inAndOut',
-          },
-          backgroundColor: 'transparent',
-          focusTarget: 'category',
-          legend: { position: 'bottom' },
-          tooltip: {
-            trigger: 'none'
-          },
-          hAxis: {
-            gridlines: {
-              color: 'transparent',
-              count: -1
-            }
-          },
-          vAxis: {
-            format: 'short',
-            minValue: 0
-          }
-        };
-
-        var chart = new google.visualization.LineChart(document.getElementById('averageAgeChart'));
-
-        google.visualization.events.addListener(chart, 'onmouseover', selectHandler);
-        function selectHandler(a) {
-          $("#averageAge .year").text(data[a.row].year);
-          $("#averageAge .card-custom:nth-child(1) .content").text(data[a.row].total.toFixed(2));
-          $("#averageAge .card-custom:nth-child(2) .content").text(data[a.row].men.toFixed(2));
-          $("#averageAge .card-custom:nth-child(3) .content").text(data[a.row].women.toFixed(2));
+      lineChart(data, {
+        title: 'Average age',
+        section: '#averageAge',
+        googleChartData: dataArray,
+        beautify: function(val) {
+          return val.toFixed(2);
         }
-
-        chart.draw(googleData, options);
-
-        $("#averageAge .year").text(data[data.length - 1].year);
-        $("#averageAge .card-custom:nth-child(1) .content").text(data[data.length - 1].total.toFixed(2));
-        $("#averageAge .card-custom:nth-child(2) .content").text(data[data.length - 1].men.toFixed(2));
-        $("#averageAge .card-custom:nth-child(3) .content").text(data[data.length - 1].women.toFixed(2));
-      }
+      });
     }
 	});
 }
@@ -149,56 +60,18 @@ function getDensity() {
       territoryId: filters.municipality
     },
     success: function (data) {
-			console.log(data);
-
+			// console.log(data);
       var dataArray = [ ['Year', 'Density'] ];
-
       Array.from(data, row => dataArray.push( [ new Date(row.year, 0, 1), row.density] ) );
 
-      google.charts.load('current', { 'packages':['corechart', 'motionchart'], callback: drawChart });
-      function drawChart() {
-        var googleData = google.visualization.arrayToDataTable(dataArray);
-        googleData.sort([{column: 0}]);
-
-        var options = {
-          title: 'Density',
-          legend: { position: 'bottom' },
-          animation: {
-            startup: true,
-            duration: 1000,
-            easing: 'inAndOut',
-          },
-          backgroundColor: 'transparent',
-          focusTarget: 'category',
-          legend: { position: 'bottom' },
-          tooltip: {
-            trigger: 'none'
-          },
-          hAxis: {
-            gridlines: {
-              color: 'transparent',
-              count: -1
-            }
-          },
-          vAxis: {
-            format: 'short',
-            minValue: 0
-          }
-        };
-
-        var chart = new google.visualization.LineChart(document.getElementById('densityChart'));
-
-        google.visualization.events.addListener(chart, 'onmouseover', selectHandler);
-        function selectHandler(a) {
-          $("#density .year").text(data[a.row].year);
-          $("#density .card-custom:nth-child(1) .content").text(data[a.row].density);
+      lineChart(data, {
+        title: 'Density',
+        section: '#density',
+        googleChartData: dataArray,
+        beautify: function(val) {
+          return val.toFixed(1);
         }
-
-        chart.draw(googleData, options);
-
-        $("#density .year").text(data[data.length - 1].year);
-        $("#density .card-custom:nth-child(1) .content").text(data[data.length - 1].density);
-      }
+      });
     }
 	});
 }
