@@ -36,9 +36,11 @@ function lineChart(data, options) {
     googleData.sort([{column: 0}]);
 
     google.visualization.events.addListener(chart, 'onmouseover', function(a) {
-      $(options.section + " ." + dataObjKeys[0]).text( data[a.row][dataObjKeys[0]] );
-      for(var i = 1; i < options.googleChartData[0].length; i++) {
-        $(options.section + " .card-custom:nth-child(" + i + ") .content").text( options.beautify(data[a.row][ dataObjKeys[i] ]) );
+      if(data[a.row]) {
+        $(options.section + " ." + dataObjKeys[0]).text( data[a.row][dataObjKeys[0]] );
+        for(var i = 1; i < options.googleChartData[0].length; i++) {
+          $(options.section + " .card-custom:nth-child(" + i + ") .content").text( options.beautify(data[a.row][ dataObjKeys[i] ]) );
+        }
       }
     });
 
