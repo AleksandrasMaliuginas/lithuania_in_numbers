@@ -7,7 +7,8 @@ import java.util.ArrayList;
 import java.util.List;
 
 import org.LithuaniaInNumbers.Database;
-import org.LithuaniaInNumbers.Models.People.population.AveragePopYear;
+import org.LithuaniaInNumbers.Models.People.population.AgeIntervalPop;
+import org.LithuaniaInNumbers.Models.People.population.AveragePopAge;
 import org.LithuaniaInNumbers.Models.People.population.TotalPopulation;
 
 public class PopulationRepository {
@@ -28,12 +29,12 @@ public class PopulationRepository {
 		return population;
 	}
 	
-	public List<AveragePopYear> getAveragePopYear(int municipalityID) throws SQLException {
-		List<AveragePopYear> average = new ArrayList<AveragePopYear>();
+	public List<AveragePopAge> getAveragePopAge(int municipalityID) throws SQLException {
+		List<AveragePopAge> average = new ArrayList<AveragePopAge>();
 		PreparedStatement statement = Database.getConnection().prepareStatement("SELECT p.men, p.women, ap.age, y.year "
 				+ "FROM people.\"Population\" AS p INNER JOIN people.\"AgePeriods\" AS ap ON p.age_period_id = ap.id "
-				+ "INNER JOIN general.\"Years\" AS y ON ap.year_id = y.id  WHERE p.municipality_id = " + municipalityID + ""
-						+ "ORDER BY y.year");
+				+ "INNER JOIN general.\"Years\" AS y ON ap.year_id = y.id  WHERE p.municipality_id = " + municipalityID 
+						+ "WHERE ap.age >= 0 && ap.age < 85 ORDER BY y.year");
 		ResultSet query = statement.executeQuery();
 		boolean next = query.next();
 		while(next) {
@@ -56,9 +57,48 @@ public class PopulationRepository {
 			int menResult = menSum / totalMen;
 			int womenResult = womenSum / totalWomen;
 			int totalResult = (menSum + womenSum) / (totalMen + totalWomen);
-			average.add(new AveragePopYear(year, menResult, womenResult, totalResult));
+			average.add(new AveragePopAge(year, menResult, womenResult, totalResult));
 		}
 		return average;
+	}
+	
+	public List<AgeIntervalPop> getPopulationByAgeInterval(int municipalityID, int ageFrom, int ageTo) throws SQLException {
+		List<AgeIntervalPop> pop = new ArrayList<AgeIntervalPop>();
+		PreparedStatement statement = Database.getConnection().prepareStatement("SELECT p.men, p.women, y.year "
+				+ "FROM people.\"Population\" AS p INNER JOIN people.\"AgePeriods\" AS ap ON p.age_period_id = ap.id "
+				+ "INNER JOIN general.\"Years\" AS y ON ap.year_id = y.id WHERE p.municipality_id = " + municipalityID +
+				" AND ap.age >= " + ageFrom + " AND ap.age <= " + ageTo + " ORDER BY y.year");
+		ResultSet query = statement.executeQuery();
+		boolean next = query.next();
+		while(next) {
+			int men = 0;
+			int women = 0;
+			int year = query.getInt(3);
+			int total = getTotalPop(municipalityID, year);
+			while(query.getInt(3) == year) {
+				men = query.getInt(1);
+				women = query.getInt(2);
+				next = query.next();
+				if(!next) break;
+			}
+			
+			pop.add(new AgeIntervalPop(year, men, women, total));
+		}
+		return pop;
+	}
+	
+	private int getTotalPop(int municipalityID, int year) throws SQLException {
+		PreparedStatement statement = Database.getConnection().prepareStatement("SELECT SUM(p.men), SUM(p.women) " + 
+				"FROM people.\"Population\" AS p " + 
+				"INNER JOIN people.\"AgePeriods\" AS ap " + 
+				"ON p.age_period_id = ap.id " + 
+				"INNER JOIN general.\"Years\" AS y " + 
+				"ON ap.year_id = y.id " + 
+				"WHERE p.municipality_id = " + municipalityID + " AND y.year = " + year + "GROUP BY y.year");
+		ResultSet query = statement.executeQuery();
+		query.next();
+		int result = query.getInt(1) + query.getInt(2);
+		return result;
 	}
 
 }
