@@ -67,7 +67,7 @@ def importAll(files, schema = 'general'):
 		regexGroup = re.fullmatch("(\d{8}_\d{2}_.+).sql", fname)
 
 		if regexGroup:
-			print(str(int(fname[0:11])) + " > " + str(lastMigration))
+			# print(str(int(fname[0:11])) + " > " + str(lastMigration))
 			if int(fname[0:11]) > lastMigration :
 				print("Execute " + fname)
 				executeCommand(path, fname, fname.find("import"))
