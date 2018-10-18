@@ -1,0 +1,21 @@
+.ui-slider {
+  height: .3em;
+  border-radius: 2px;
+  margin: 50px auto;
+}
+
+.ui-slider .ui-slider-handle {
+  width: 1em;
+  height: 1em;
+  border-radius: 100%;
+  outline: none;
+}
+
+.ui-slider .ui-slider-range {
+  background: var(--green);
+}
+
+.ui-widget.ui-widget-content {
+  border: none;
+  background: orange;
+}

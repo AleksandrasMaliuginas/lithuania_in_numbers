@@ -12,9 +12,11 @@ function getPopulation() {
       territoryId: filters.municipality
     },
     success: function(data) {
-			// console.log(data);
+
       var dataArray = [ ['Year', 'Total', 'Men', 'Women'] ];
-      Array.from(data, row => dataArray.push( [ new Date(row.year, 0, 1), row.total, row.men, row.women] ) );
+      Object.entries(data).map( ([key, value]) =>
+        dataArray.push([new Date(key, 0, 1), value.total, value.men, value.women])
+      );
 
       lineChart(data, {
         title: 'Population',
@@ -36,9 +38,11 @@ function getAverageAge() {
       territoryId: filters.municipality
     },
     success: function (data) {
-      // console.log(data);
+
       var dataArray = [ ['Year', 'Total', 'Men', 'Women'] ];
-      Array.from(data, row => dataArray.push( [ new Date(row.year, 0, 1), row.total, row.men, row.women] ) );
+      Object.entries(data).map( ([key, value]) =>
+        dataArray.push([new Date(key, 0, 1), value.total, value.men, value.women])
+      );
 
       lineChart(data, {
         title: 'Average age',
@@ -60,9 +64,11 @@ function getDensity() {
       territoryId: filters.municipality
     },
     success: function (data) {
-			// console.log(data);
+
       var dataArray = [ ['Year', 'Density'] ];
-      Array.from(data, row => dataArray.push( [ new Date(row.year, 0, 1), row.density] ) );
+      Object.entries(data).map( ([key, value]) =>
+        dataArray.push([new Date(key, 0, 1), value.density])
+      );
 
       lineChart(data, {
         title: 'Density',
@@ -73,5 +79,31 @@ function getDensity() {
         }
       });
     }
+	});
+}
+
+function getPopulationRatio() {
+  $.ajax({
+    url: POPULATION_URL,
+		dataType: 'json',
+		data: {
+      territoryId: filters.municipality
+    },
+    success: function(data) {
+
+      var dataArray = [ ['Year', 'Total', 'Men', 'Women'] ];
+      Object.entries(data).map( ([key, value]) =>
+        dataArray.push([new Date(key, 0, 1), value.total, value.men, value.women])
+      );
+
+      lineChart(data, {
+        title: 'Percentage of population by age',
+        section: '#population-ratio',
+        googleChartData: dataArray,
+        beautify: function(val) {
+          return splitInt(val);
+        }
+      });
+		}
 	});
 }
